@@ -34,7 +34,7 @@ class AuthController extends Controller
 
       $data = [
         'user' => $user,
-        'access_token' => trim($token->plainTextToken, '|')
+        'access_token' => explode('|', $token->plainTextToken)[1]
       ];
 
       return response()->json(res('User has been created.', $data, 201), 201);
@@ -63,7 +63,7 @@ class AuthController extends Controller
         $token = $user->createToken($user->email);
 
         $data = [
-          'access_token' => trim($token->plainTextToken, '|')
+          'access_token' => explode('|', $token->plainTextToken)[1]
         ];
 
         return response()->json(res('Successfully logged in.', $data));
@@ -87,7 +87,7 @@ class AuthController extends Controller
     return catcher($fn);
   }
 
-  public function forgotPassword(Request $request) {
+  public function forgotPassword(AuthRequest $request) {
     // Generate reset token
     $fn = function () use ($request) {
       $email = $request->only('email');
@@ -104,7 +104,7 @@ class AuthController extends Controller
     return catcher($fn);
   }
 
-  public function resetPassword(Request $request) {
+  public function resetPassword(AuthRequest $request) {
     // Change password using reset token
     $fn = function () use ($request) {
       $creds = $request->only('email', 'password', 'token');
