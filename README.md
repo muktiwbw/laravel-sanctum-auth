@@ -11,7 +11,7 @@ A basic REST API authentication boilerplate using Laravel Sanctum. The boilerpla
 
 ## Installation
 
-Clone this repository and run `composer install && php artisan key:generate`.
+Clone this repository and run `cp .env.example .env && composer install && php artisan key:generate`.
 
 ## Setting Up
 
