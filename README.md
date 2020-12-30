@@ -115,16 +115,3 @@ public function rules() {
 }
 ```
 
-## What Could Be Improved?
-To answer that question, obviously a lot. Like, A LOT. To be honest I made this boilerplate so that I don't have to rewrite the same codes over and over again in the future. The authentication methods are pretty much the same for most applications. Initially i wanted to try Laravel Fortify but it doesn't really do well for REST API.
-
-### Events
-Events in Laravel acts as a response to certain logic in controller. Let's say you are registering a user. Usually you might want to send them an email verification or some newsletter. In this case you don't want to populate your controller with some mailing logics. That's why you need events. Refer to [Events](https://laravel.com/docs/8.x/events) section on Laravel official site. 
-
-Besides events, you can also use [Eloquent Observers](https://laravel.com/docs/8.x/eloquent#observers). The observers observe each model and trigger some events once those model instances have been `created`, `updated`, `deleted`, or `forceDeleted`.
-
-### Mailing
-The mailing feature used in all of the authentication functions are built-ins. You might want to change some of the text or just make your own mail template.
-
-### Queueing
-Speaking of mailing, mailing usually takes time to process. Much like mailing, image processing or other media related processes usually take lots of time. This is why you should queue those processes. Refer to [Queue on Events](https://laravel.com/docs/8.x/events#queued-event-listeners) section on Laravel official site.
